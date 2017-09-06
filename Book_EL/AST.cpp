@@ -21,3 +21,9 @@ division_expr::division_expr(expression *expr1, expression *expr2) : e1(expr1), 
 
 remainder_expr::remainder_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
 {}
+
+and_expr::and_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+{}
+
+or_expr::or_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+{}

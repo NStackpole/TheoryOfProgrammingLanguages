@@ -56,4 +56,18 @@ struct remainder_expr : public expression
     remainder_expr(expression *, expression *);
 };
 
+struct and_expr : public expression
+{
+    expression *e1;
+    expression *e2;
+    and_expr(expression *, expression*);
+};
+
+struct or_expr : public expression
+{
+    expression *e1;
+    expression *e2;
+    or_expr(expression *, expression*);
+};
+
 #endif
