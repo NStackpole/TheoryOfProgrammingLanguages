@@ -70,4 +70,25 @@ struct or_expr : public expression
     or_expr(expression *, expression*);
 };
 
+struct less_than_expr : public expression
+{
+    expression *e1;
+    expression *e2;
+    less_than_expr(expression *, expression*);
+};
+
+struct more_than_expr : public expression
+{
+    expression *e1;
+    expression *e2;
+    more_than_expr(expression *, expression*);
+};
+
+struct equal_to_expr : public expression
+{
+    expression *e1;
+    expression *e2;
+    equal_to_expr(expression *, expression*);
+};
+
 #endif

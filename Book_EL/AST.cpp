@@ -27,3 +27,12 @@ and_expr::and_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
 
 or_expr::or_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
 {}
+
+less_than_expr::less_than_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+{}
+
+more_than_expr::more_than_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+{}
+
+equal_to_expr::equal_to_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+{}
