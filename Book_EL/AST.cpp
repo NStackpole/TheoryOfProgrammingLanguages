@@ -1,6 +1,7 @@
 //Nathan Stackpole, 2017
 #include "AST.hpp"
 
+//Constructors
 integer::integer(int val) : value(val)
 {}
 
@@ -36,3 +37,14 @@ more_than_expr::more_than_expr(expression *expr1, expression *expr2) : e1(expr1)
 
 equal_to_expr::equal_to_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
 {}
+
+//eval
+int expression::eval()
+{
+    return -1;
+}
+
+int integer::eval()
+{
+    return value;
+}

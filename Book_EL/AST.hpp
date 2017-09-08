@@ -6,12 +6,13 @@
 
 struct expression
 {
-
+    int eval();
 };
 
 struct integer : public expression
 {
     int value;
+    int eval();
     integer(int);
 };
 
