@@ -4,6 +4,15 @@
 #ifndef AST_HPP
 #define AST_HPP
 
+enum arithmetic_op
+{
+    op_add,
+    op_subtract,
+    op_multiply,
+    op_divide,
+    op_remainder
+};
+
 enum realtional_op
 {
     op_less_than,
@@ -44,92 +53,57 @@ struct program
     numeric_expression* body;
 };
 
-struct expression
+struct numeric_expression
 {
-    int eval();
+    numeric_expression(numeric_expression_kind k);
+
+    numeric_expression_kind kind;
 };
 
-struct integer : public expression
+struct boolean_expression
+{
+    boolean_expression(bool_expression_kind k);
+
+    bool_expression_kind kind;
+};
+
+struct arithmetic_expression : numeric_expression
+{
+    arithmetic_expression(arithmetic_op, numeric_expression*, numeric_expression*);
+
+    arithmetic_op op;
+    numeric_expression* lhs;
+    numeric_expression* rhs;
+};
+
+struct argument_expression : numeric_expression
+{
+    argument_expression(int);
+
+    int arg;
+};
+
+struct if_expression : numeric_expression
+{
+    if_expression(boolean_expression*, numeric_expression*, numeric_expression*);
+
+    boolean_expression* test;
+    numeric_expression* pass;
+    numeric_expression* fail;
+};
+
+struct integer : numeric_expression
 {
     int value;
     int eval();
     integer(int);
 };
 
-struct boolean : public expression
+struct boolean : boolean_expression
 {
     bool value;
     boolean(bool);
 };
 
-struct addition_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    addition_expr(expression *, expression *);
-};
-
-struct subtraction_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    subtraction_expr(expression *, expression *);
-};
-
-struct multiplication_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    multiplication_expr(expression *, expression *);
-};
-
-struct division_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    division_expr(expression *, expression *);
-};
-
-struct remainder_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    remainder_expr(expression *, expression *);
-};
-
-struct and_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    and_expr(expression *, expression*);
-};
-
-struct or_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    or_expr(expression *, expression*);
-};
-
-struct less_than_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    less_than_expr(expression *, expression*);
-};
-
-struct more_than_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    more_than_expr(expression *, expression*);
-};
-
-struct equal_to_expr : public expression
-{
-    expression *e1;
-    expression *e2;
-    equal_to_expr(expression *, expression*);
-};
 
 #endif

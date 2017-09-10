@@ -5,48 +5,22 @@
 program::program(int n, numeric_expression* e) : args(n), body(e)
 {}
 
-integer::integer(int val) : value(val)
+numeric_expression::numeric_expression(numeric_expression_kind k) : kind(k)
 {}
 
-boolean::boolean(bool val) : value(val)
+boolean_expression::boolean_expression(bool_expression_kind k) : kind(k)
 {}
 
-addition_expr::addition_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+arithmetic_expression::arithmetic_expression(arithmetic_op oper, numeric_expression* left, numeric_expression* right) : numeric_expression(ek_arith), op(oper), lhs(left), rhs(right)
 {}
 
-subtraction_expr::subtraction_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+integer::integer(int val) : numeric_expression(ek_int), value(val)
 {}
 
-multiplication_expr::multiplication_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-division_expr::division_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-remainder_expr::remainder_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-and_expr::and_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-or_expr::or_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-less_than_expr::less_than_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-more_than_expr::more_than_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
-{}
-
-equal_to_expr::equal_to_expr(expression *expr1, expression *expr2) : e1(expr1), e2(expr2)
+boolean::boolean(bool val) : boolean_expression(ek_bool), value(val)
 {}
 
 //eval: evaluates the expression
-int expression::eval()
-{
-    return -1;
-}
-
 int integer::eval()
 {
     return value;
