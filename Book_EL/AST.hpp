@@ -13,7 +13,7 @@ enum arithmetic_op
     op_remainder
 };
 
-enum realtional_op
+enum relational_op
 {
     op_less_than,
     op_greater_than,
@@ -90,6 +90,15 @@ struct if_expression : numeric_expression
     boolean_expression* test;
     numeric_expression* pass;
     numeric_expression* fail;
+};
+
+struct relational_expression : boolean_expression
+{
+    relational_expression(relational_op, numeric_expression*, numeric_expression*);
+
+    relational_op op;
+    numeric_expression* lhs;
+    numeric_expression* rhs;
 };
 
 struct integer : numeric_expression
