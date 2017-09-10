@@ -101,6 +101,15 @@ struct relational_expression : boolean_expression
     numeric_expression* rhs;
 };
 
+struct logical_expression : boolean_expression
+{
+    logical_expression(logical_operator, boolean_expression*, boolean_expression*);
+
+    logical_operator op;
+    boolean_expression* lhs;
+    boolean_expression* rhs;
+};
+
 struct integer : numeric_expression
 {
     int value;
