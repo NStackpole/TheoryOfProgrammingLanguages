@@ -20,6 +20,12 @@ argument_expression::argument_expression(int n) : numeric_expression(ek_arg), ar
 if_expression::if_expression(boolean_expression* tst, numeric_expression* ps, numeric_expression* fl) : numeric_expression(ek_if), test(tst), pass(ps), fail(fl)
 {}
 
+relational_expression::relational_expression(relational_op oper, numeric_expression* e1, numeric_expression* e2) : boolean_expression(ek_bool), op(oper), lhs(e1), rhs(e2)
+{}
+
+logical_expression::logical_expression(logical_operator oper, boolean_expression* e1, boolean_expression* e2) : boolean_expression(ek_bool), op(oper), lhs(e1), rhs(e2)
+{}
+
 integer::integer(int val) : numeric_expression(ek_int), value(val)
 {}
 
