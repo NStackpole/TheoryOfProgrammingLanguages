@@ -1,9 +1,8 @@
 #include "AST.hpp"
 
-
-int main()
+ßint main()
 {
-    std::cout<<"Hello.\n";
+    std::cout << "Hello.\n";
 
     return 0;
 }
