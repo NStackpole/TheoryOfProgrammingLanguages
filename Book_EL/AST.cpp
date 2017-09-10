@@ -14,6 +14,9 @@ boolean_expression::boolean_expression(bool_expression_kind k) : kind(k)
 arithmetic_expression::arithmetic_expression(arithmetic_op oper, numeric_expression* left, numeric_expression* right) : numeric_expression(ek_arith), op(oper), lhs(left), rhs(right)
 {}
 
+argument_expression::argument_expression(int n) : numeric_expression(ek_arg), arg(n)
+{}
+
 integer::integer(int val) : numeric_expression(ek_int), value(val)
 {}
 
