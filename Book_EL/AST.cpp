@@ -17,6 +17,9 @@ arithmetic_expression::arithmetic_expression(arithmetic_op oper, numeric_express
 argument_expression::argument_expression(int n) : numeric_expression(ek_arg), arg(n)
 {}
 
+if_expression::if_expression(boolean_expression* tst, numeric_expression* ps, numeric_expression* fl) : numeric_expression(ek_if), test(tst), pass(ps), fail(fl)
+{}
+
 integer::integer(int val) : numeric_expression(ek_int), value(val)
 {}
 
