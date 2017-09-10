@@ -4,6 +4,46 @@
 #ifndef AST_HPP
 #define AST_HPP
 
+enum realtional_op
+{
+    op_less_than,
+    op_greater_than,
+    op_equal
+};
+
+enum logical_operator
+{
+    op_and,
+    op_or
+};
+
+enum numeric_expression_kind
+{
+    ek_int,
+    ek_arg,
+    ek_arith,
+    ek_if
+};
+
+enum bool_expression_kind
+{
+    ek_bool,
+    ek_rel,
+    ek_logic
+};
+
+struct program;
+struct numeric_expression;
+struct boolean_expression;
+
+struct program
+{
+    program(int n, numeric_expression* e);
+
+    int args;
+    numeric_expression* body;
+};
+
 struct expression
 {
     int eval();

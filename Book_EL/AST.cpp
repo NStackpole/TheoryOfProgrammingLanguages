@@ -2,6 +2,9 @@
 #include "AST.hpp"
 
 //Constructors
+program::program(int n, numeric_expression* e) : args(n), body(e)
+{}
+
 integer::integer(int val) : value(val)
 {}
 
