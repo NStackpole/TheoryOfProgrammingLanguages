@@ -26,11 +26,11 @@ if_expression::if_expression(boolean_expression *tst, numeric_expression *ps, nu
 {
 }
 
-relational_expression::relational_expression(relational_op oper, numeric_expression *e1, numeric_expression *e2) : boolean_expression(ek_bool), op(oper), lhs(e1), rhs(e2)
+relational_expression::relational_expression(relational_op oper, numeric_expression *e1, numeric_expression *e2) : boolean_expression(ek_rel), op(oper), lhs(e1), rhs(e2)
 {
 }
 
-logical_expression::logical_expression(logical_operator oper, boolean_expression *e1, boolean_expression *e2) : boolean_expression(ek_bool), op(oper), lhs(e1), rhs(e2)
+logical_expression::logical_expression(logical_operator oper, boolean_expression *e1, boolean_expression *e2) : boolean_expression(ek_logic), op(oper), lhs(e1), rhs(e2)
 {
 }
 
