@@ -1,5 +1,6 @@
 //Nathan Stackpole, 2017
 #include <iostream>
+#include <algorithm>
 
 #ifndef AST_HPP
 #define AST_HPP
@@ -123,5 +124,8 @@ struct boolean : boolean_expression
     int eval();
     boolean(bool);
 };
+
+int height(numeric_expression*);
+int height(boolean_expression*);
 
 #endif
