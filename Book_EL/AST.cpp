@@ -47,3 +47,8 @@ int integer::eval()
 {
     return value;
 }
+
+int boolean::eval()
+{
+    return value;
+}

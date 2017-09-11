@@ -120,6 +120,7 @@ struct integer : numeric_expression
 struct boolean : boolean_expression
 {
     bool value;
+    int eval();
     boolean(bool);
 };
 
