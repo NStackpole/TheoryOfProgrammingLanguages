@@ -1,6 +1,6 @@
 #include "AST.hpp"
 
-ßint main()
+int main()
 {
     std::cout << "Hello.\n";
 
