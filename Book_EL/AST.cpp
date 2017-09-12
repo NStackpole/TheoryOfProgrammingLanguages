@@ -85,6 +85,15 @@ int relational_expression::eval()
         return -1; //Maybe throw exception here.
 }
 
+int if_expression::eval()
+{
+    if(test->eval())
+        return pass->eval();
+    else
+        return fail->eval();
+
+}
+
 //Height functions
 int height_arith(arithmetic_expression *e)
 {
