@@ -58,6 +58,11 @@ int boolean_expression::eval()
     return 0;
 }
 
+int numeric_expression::eval()
+{
+    return 0;
+}
+
 int logical_expression::eval()
 {
     if (op == op_and)
