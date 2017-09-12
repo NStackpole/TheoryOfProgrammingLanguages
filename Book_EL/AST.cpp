@@ -53,6 +53,22 @@ int boolean::eval()
     return value;
 }
 
+int boolean_expression::eval()
+{
+    return 0;
+}
+
+int logical_expression::eval()
+{
+    if(op == op_and)
+        return lhs->eval() && rhs->eval();
+    else if (op == op_or)
+        return lhs->eval() || rhs->eval();
+    else
+        return -1; //Maybe throw exception here.
+}
+
+//Height functions
 int height_arith(arithmetic_expression *e)
 {
     return 1 + std::max(height(e->lhs), height(e->rhs));
