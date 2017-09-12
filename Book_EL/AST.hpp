@@ -57,6 +57,7 @@ struct program
 struct numeric_expression
 {
     numeric_expression(numeric_expression_kind k);
+    int eval();
 
     numeric_expression_kind kind;
 };
@@ -64,6 +65,7 @@ struct numeric_expression
 struct boolean_expression
 {
     boolean_expression(bool_expression_kind k);
+    int eval();
 
     bool_expression_kind kind;
 };
