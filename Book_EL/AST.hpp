@@ -71,6 +71,7 @@ struct boolean_expression
 struct arithmetic_expression : numeric_expression
 {
     arithmetic_expression(arithmetic_op, numeric_expression *, numeric_expression *);
+    int eval();
 
     arithmetic_op op;
     numeric_expression *lhs;
@@ -87,6 +88,7 @@ struct argument_expression : numeric_expression
 struct if_expression : numeric_expression
 {
     if_expression(boolean_expression *, numeric_expression *, numeric_expression *);
+    int eval();
 
     boolean_expression *test;
     numeric_expression *pass;
@@ -96,6 +98,7 @@ struct if_expression : numeric_expression
 struct relational_expression : boolean_expression
 {
     relational_expression(relational_op, numeric_expression *, numeric_expression *);
+    int eval();
 
     relational_op op;
     numeric_expression *lhs;
@@ -105,7 +108,8 @@ struct relational_expression : boolean_expression
 struct logical_expression : boolean_expression
 {
     logical_expression(logical_operator, boolean_expression *, boolean_expression *);
-
+    int eval();
+    
     logical_operator op;
     boolean_expression *lhs;
     boolean_expression *rhs;
