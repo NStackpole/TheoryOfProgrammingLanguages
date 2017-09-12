@@ -94,6 +94,11 @@ int if_expression::eval()
 
 }
 
+int arithmetic_expression::eval()
+{
+    return 0;
+}
+
 //Height functions
 int height_arith(arithmetic_expression *e)
 {
