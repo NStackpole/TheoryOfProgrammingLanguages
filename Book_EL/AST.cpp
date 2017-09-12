@@ -60,10 +60,22 @@ int boolean_expression::eval()
 
 int logical_expression::eval()
 {
-    if(op == op_and)
+    if (op == op_and)
         return lhs->eval() && rhs->eval();
     else if (op == op_or)
         return lhs->eval() || rhs->eval();
+    else
+        return -1; //Maybe throw exception here.
+}
+
+int relational_expression::eval()
+{
+    if (op == op_less_than)
+        return lhs->eval() < rhs->eval();
+    else if (op == op_greater_than)
+        return lhs->eval() > rhs->eval();
+    else if (op == op_equal)
+        return lhs->eval() == rhs->eval();
     else
         return -1; //Maybe throw exception here.
 }
