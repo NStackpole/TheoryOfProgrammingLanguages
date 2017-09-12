@@ -96,7 +96,16 @@ int if_expression::eval()
 
 int arithmetic_expression::eval()
 {
-    return 0;
+    if(op == op_add)
+        return lhs->eval() + rhs->eval();
+    else if(op == op_subtract)
+        return lhs->eval() - rhs->eval();
+    else if(op == op_multiply)
+        return lhs->eval() * rhs->eval();
+    else if(op == op_divide)
+        return lhs->eval() / rhs->eval();
+    else
+        return -1; //Maybe throw exception here.
 }
 
 //Height functions
