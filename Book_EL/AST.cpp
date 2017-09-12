@@ -60,7 +60,7 @@ int height_arith(arithmetic_expression *e)
 
 int height_if(if_expression *e)
 {
-    return 1 + std::max(height(e->test), std::max(height(e->pass), height(e->fail)));
+    return 1 + std::max({height(e->test), height(e->pass), height(e->fail)});
 }
 
 int height_logic(logical_expression *e)
