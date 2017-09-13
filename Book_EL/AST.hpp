@@ -134,4 +134,8 @@ struct boolean : boolean_expression
 int height(numeric_expression*);
 int height(boolean_expression*);
 
+//printing
+void print(numeric_expression *e);
+void print(boolean_expression *e);
+
 #endif
