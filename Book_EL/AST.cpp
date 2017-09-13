@@ -104,6 +104,8 @@ int arithmetic_expression::eval()
         return lhs->eval() * rhs->eval();
     else if(op == op_divide)
         return lhs->eval() / rhs->eval();
+    else if(op == op_remainder)
+        return lhs->eval() % rhs->eval();
     else
         return -1; //Maybe throw exception here.
 }
