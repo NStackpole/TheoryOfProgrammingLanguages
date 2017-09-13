@@ -59,7 +59,8 @@ int main()
 
         if_expression *if_test = new if_expression(relation_test, new arithmetic_expression(op_add, new integer(20), new integer(30)), new arithmetic_expression(op_add, new integer(200), new integer(30)));
 
-        std::cout << if_test->eval() << "\n";
+        print(if_test);
+        std::cout << " = " << if_test->eval() << "\n";
     }
 
     return 0;
