@@ -43,8 +43,62 @@ void print_arith(arithmetic_expression *e)
     std::cout << ")";
 }
 
+void print_logical(logical_expression *e)
+{
+    switch (e->op)
+    {
+    case op_and:
+        std::cout << "(";
+        print(e->lhs);
+        std::cout << " and ";
+        print(e->rhs);
+        std::cout << ")";
+    case op_or:
+        std::cout << "(";
+        print(e->lhs);
+        std::cout << " or ";
+        print(e->rhs);
+        std::cout << ")";
+    }
+}
+
+void print_relational(relational_expression *e)
+{
+    switch (e->op)
+    {
+    case op_less_than:
+        std::cout << "(";
+        print(e->lhs);
+        std::cout << " < ";
+        print(e->rhs);
+        std::cout << ")";
+        break;
+    case op_greater_than:
+        std::cout << "(";
+        print(e->lhs);
+        std::cout << " > ";
+        print(e->rhs);
+        std::cout << ")";
+        break;
+    case op_equal:
+        std::cout << "(";
+        print(e->lhs);
+        std::cout << " == ";
+        print(e->rhs);
+        std::cout << ")";
+        break;
+    }
+}
+
 void print_if(if_expression *e)
 {
+    std::cout << "(if ";
+    print(e->test);
+    std::cout << " then ";
+    print(e->pass);
+    std::cout << " else ";
+    print(e->fail);
+    std::cout << ")";
 }
 
 void print(numeric_expression *e)
@@ -69,8 +123,8 @@ void print(boolean_expression *e)
     case ek_bool:
         return print_boolean(static_cast<boolean *>(e));
     case ek_rel:
-        break;
+        return print_relational(static_cast<relational_expression *>(e));
     case ek_logic:
-        break;
+        return print_logical(static_cast<logical_expression *>(e));
     }
 }
