@@ -10,6 +10,11 @@ void print_boolean(boolean *e)
     std::cout << e->eval();
 }
 
+void print_arg(argument_expression *e)
+{
+    std::cout << "(arg " << e->arg << ")";
+}
+
 void print(arithmetic_op op)
 {
     switch (op)
