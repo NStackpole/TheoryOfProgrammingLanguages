@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "-std=c++1z")
 add_executable(AST-test
 	AST.cpp
   main.cpp
+  print.cpp
 	)
 
 set(files AST.cpp main.cpp)
