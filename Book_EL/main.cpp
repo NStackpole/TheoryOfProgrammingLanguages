@@ -5,6 +5,48 @@ int main()
     std::cout << "Hello.\n";
 
     {
+        logical_expression *logical_test = new logical_expression(op_and, new boolean(true), new boolean(false));
+        
+        print(logical_test);
+        std::cout << " = " << logical_test->eval() << "\n";
+    }
+
+    {
+        logical_expression *logical_test = new logical_expression(op_and, new boolean(true), new boolean(true));
+        
+        print(logical_test);
+        std::cout << " = " << logical_test->eval() << "\n";
+    }
+
+    {
+        logical_expression *logical_test = new logical_expression(op_and, new boolean(false), new boolean(false));
+        
+        print(logical_test);
+        std::cout << " = " << logical_test->eval() << "\n";
+    }
+
+    {
+        logical_expression *logical_test = new logical_expression(op_or, new boolean(true), new boolean(false));
+        
+        print(logical_test);
+        std::cout << " = " << logical_test->eval() << "\n";
+    }
+
+    {
+        logical_expression *logical_test = new logical_expression(op_or, new boolean(true), new boolean(true));
+        
+        print(logical_test);
+        std::cout << " = " << logical_test->eval() << "\n";
+    }
+
+    {
+        logical_expression *logical_test = new logical_expression(op_or, new boolean(false), new boolean(false));
+        
+        print(logical_test);
+        std::cout << " = " << logical_test->eval() << "\n";
+    }
+
+    {
         relational_expression *relation_test = new relational_expression(op_less_than, new integer(10), new integer(20));
         print(relation_test);
         std::cout << " = " << relation_test->eval() << "\n";
