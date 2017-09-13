@@ -4,48 +4,44 @@ int main()
 {
     std::cout << "Hello.\n";
 
+    //logical_expression tests ----------------------------------------------------------------------------------
     {
         logical_expression *logical_test = new logical_expression(op_and, new boolean(true), new boolean(false));
-        
         print(logical_test);
         std::cout << " = " << logical_test->eval() << "\n";
     }
 
     {
         logical_expression *logical_test = new logical_expression(op_and, new boolean(true), new boolean(true));
-        
         print(logical_test);
         std::cout << " = " << logical_test->eval() << "\n";
     }
 
     {
         logical_expression *logical_test = new logical_expression(op_and, new boolean(false), new boolean(false));
-        
         print(logical_test);
         std::cout << " = " << logical_test->eval() << "\n";
     }
 
     {
         logical_expression *logical_test = new logical_expression(op_or, new boolean(true), new boolean(false));
-        
         print(logical_test);
         std::cout << " = " << logical_test->eval() << "\n";
     }
 
     {
         logical_expression *logical_test = new logical_expression(op_or, new boolean(true), new boolean(true));
-        
         print(logical_test);
         std::cout << " = " << logical_test->eval() << "\n";
     }
 
     {
         logical_expression *logical_test = new logical_expression(op_or, new boolean(false), new boolean(false));
-        
         print(logical_test);
         std::cout << " = " << logical_test->eval() << "\n";
     }
 
+    //relational_expression tests ----------------------------------------------------------------------------------
     {
         relational_expression *relation_test = new relational_expression(op_less_than, new integer(10), new integer(20));
         print(relation_test);
@@ -70,6 +66,7 @@ int main()
         std::cout << " = " << relation_test->eval() << "\n";
     }
 
+    //arithemtic_expression tests ----------------------------------------------------------------------------------
     {
         arithmetic_expression *arithmetic_test = new arithmetic_expression(op_add, new integer(200), new integer(10));
         print(arithmetic_test);
@@ -100,6 +97,7 @@ int main()
         std::cout << " = " << arithmetic_test->eval() << "\n";
     }
 
+    //if_expressions tests ----------------------------------------------------------------------------------
     {
         relational_expression *relation_test = new relational_expression(op_less_than, new integer(100), new integer(20));
 
