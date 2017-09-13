@@ -53,12 +53,14 @@ void print_logical(logical_expression *e)
         std::cout << " and ";
         print(e->rhs);
         std::cout << ")";
+        break;
     case op_or:
         std::cout << "(";
         print(e->lhs);
         std::cout << " or ";
         print(e->rhs);
         std::cout << ")";
+        break;
     }
 }
 
