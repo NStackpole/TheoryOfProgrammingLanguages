@@ -131,6 +131,7 @@ struct boolean : boolean_expression
     boolean(bool);
 };
 
+//height
 int height(numeric_expression*);
 int height(boolean_expression*);
 
