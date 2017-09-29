@@ -1,4 +1,0 @@
-
-set(CMAKE_CXX_FLAGS "-std=c++14")
-
-add_executable(el main.cpp el.cpp print.cpp)

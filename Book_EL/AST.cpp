@@ -173,3 +173,32 @@ int height(boolean_expression *e)
         return height_logic(static_cast<logical_expression *>(e));
     }
 }
+
+numeric_expression* pfold()
+{
+  return new numeric_expression(ek_int);
+}
+
+numeric_expression* nfold(numeric_expression* e)
+{
+  switch(e->kind)
+  {
+    case ek_int:
+      break;
+    case ek_arg:
+      break;
+    case ek_arith:
+      arithmetic_expression *e1 = static_cast<arithmetic_expression*>(e);
+      if(e1->op == op_add)
+        return new integer(e1->lhs + e1->rhs);
+    break;
+
+  }
+
+  return new numeric_expression(ek_int);
+}
+
+boolean_expression* bfold(boolean_expression* e)
+{
+  return new boolean_expression(ek_bool);
+}

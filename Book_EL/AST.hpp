@@ -139,4 +139,9 @@ int height(boolean_expression*);
 void print(numeric_expression *e);
 void print(boolean_expression *e);
 
+//folding
+numeric_expression* pfold();
+numeric_expression* nfold(numeric_expression* e);
+boolean_expression* bfold(boolean_expression* e);
+
 #endif
