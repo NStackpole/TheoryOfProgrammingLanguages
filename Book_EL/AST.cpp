@@ -184,21 +184,48 @@ numeric_expression* nfold(numeric_expression* e)
   switch(e->kind)
   {
     case ek_int:
-      break;
+        return e;
+
     case ek_arg:
-      break;
+        return e;
+
+    case ek_if:
+        break;
     case ek_arith:
-      arithmetic_expression *e1 = static_cast<arithmetic_expression*>(e);
-      if(e1->op == op_add)
-        return new integer(e1->lhs + e1->rhs);
-    break;
+        arithmetic_expression *expr = static_cast<arithmetic_expression *>(e);
+        switch(expr->op)
+        {
+            case op_add:
+            return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() + static_cast<integer *>(nfold(expr->rhs))->eval());
+            case op_subtract:
+            break;
+            case op_divide:
+            break;
+            case op_multiply:
+            break;
+            case op_remainder:
+            break;
+        }
+        
+        
+        break;
 
   }
-
-  return new numeric_expression(ek_int);
+  
+  return e;
 }
 
 boolean_expression* bfold(boolean_expression* e)
 {
-  return new boolean_expression(ek_bool);
+    switch(e->kind)
+    {
+        case ek_bool:
+        break;
+        case ek_rel:
+        break;
+        case ek_logic:
+        break;
+    }
+
+  return e;
 }
