@@ -116,9 +116,41 @@ int main()
         std::cout << " = " << if_test->eval() << "\n";
     }
 
-    //folding test ----------------------------------------------------------------------------------
+    //folding tests ----------------------------------------------------------------------------------
     {
         program *test = new program(0, new arithmetic_expression(op_add, new integer(10), new integer(50)));
+
+        //Comes back with and prints an integer instead of an arithmetic expression.
+        print(pfold(test));
+        std::cout << "\n";
+    }
+
+    {
+        program *test = new program(0, new arithmetic_expression(op_subtract, new integer(10), new integer(50)));
+
+        //Comes back with and prints an integer instead of an arithmetic expression.
+        print(pfold(test));
+        std::cout << "\n";
+    }
+
+    {
+        program *test = new program(0, new arithmetic_expression(op_divide, new integer(10), new integer(50)));
+
+        //Comes back with and prints an integer instead of an arithmetic expression.
+        print(pfold(test));
+        std::cout << "\n";
+    }
+
+    {
+        program *test = new program(0, new arithmetic_expression(op_multiply, new integer(10), new integer(50)));
+
+        //Comes back with and prints an integer instead of an arithmetic expression.
+        print(pfold(test));
+        std::cout << "\n";
+    }
+
+    {
+        program *test = new program(0, new arithmetic_expression(op_remainder, new integer(10), new integer(50)));
 
         //Comes back with and prints an integer instead of an arithmetic expression.
         print(pfold(test));
