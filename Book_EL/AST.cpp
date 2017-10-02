@@ -189,7 +189,16 @@ numeric_expression *nfold(numeric_expression *e)
         return e;
 
     case ek_if:
+    {
+        if_expression *expr = static_cast<if_expression *>(e);
+
+        if(bfold(expr->test)->eval())
+            return nfold(expr->pass);
+        else
+            return nfold(expr->fail);
+
         break;
+    }
     case ek_arith:
     {
         arithmetic_expression *expr = static_cast<arithmetic_expression *>(e);
