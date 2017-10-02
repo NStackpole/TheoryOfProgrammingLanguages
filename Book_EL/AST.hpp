@@ -111,7 +111,7 @@ struct logical_expression : boolean_expression
 {
     logical_expression(logical_operator, boolean_expression *, boolean_expression *);
     int eval();
-    
+
     logical_operator op;
     boolean_expression *lhs;
     boolean_expression *rhs;
@@ -132,16 +132,16 @@ struct boolean : boolean_expression
 };
 
 //height
-int height(numeric_expression*);
-int height(boolean_expression*);
+int height(numeric_expression *);
+int height(boolean_expression *);
 
 //printing
 void print(numeric_expression *e);
 void print(boolean_expression *e);
 
 //folding
-numeric_expression* pfold();
-numeric_expression* nfold(numeric_expression* e);
-boolean_expression* bfold(boolean_expression* e);
+numeric_expression *pfold(program *p);
+numeric_expression *nfold(numeric_expression *e);
+boolean_expression *bfold(boolean_expression *e);
 
 #endif

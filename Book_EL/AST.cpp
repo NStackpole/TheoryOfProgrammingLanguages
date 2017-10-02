@@ -87,24 +87,23 @@ int relational_expression::eval()
 
 int if_expression::eval()
 {
-    if(test->eval())
+    if (test->eval())
         return pass->eval();
     else
         return fail->eval();
-
 }
 
 int arithmetic_expression::eval()
 {
-    if(op == op_add)
+    if (op == op_add)
         return lhs->eval() + rhs->eval();
-    else if(op == op_subtract)
+    else if (op == op_subtract)
         return lhs->eval() - rhs->eval();
-    else if(op == op_multiply)
+    else if (op == op_multiply)
         return lhs->eval() * rhs->eval();
-    else if(op == op_divide)
+    else if (op == op_divide)
         return lhs->eval() / rhs->eval();
-    else if(op == op_remainder)
+    else if (op == op_remainder)
         return lhs->eval() % rhs->eval();
     else
         return -1; //Maybe throw exception here.
@@ -174,15 +173,15 @@ int height(boolean_expression *e)
     }
 }
 
-numeric_expression* pfold()
+numeric_expression *pfold(program *p)
 {
-  return new numeric_expression(ek_int);
+    return nfold(p->body);
 }
 
-numeric_expression* nfold(numeric_expression* e)
+numeric_expression *nfold(numeric_expression *e)
 {
-  switch(e->kind)
-  {
+    switch (e->kind)
+    {
     case ek_int:
         return e;
 
@@ -193,39 +192,37 @@ numeric_expression* nfold(numeric_expression* e)
         break;
     case ek_arith:
         arithmetic_expression *expr = static_cast<arithmetic_expression *>(e);
-        switch(expr->op)
+        switch (expr->op)
         {
-            case op_add:
+        case op_add:
             return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() + static_cast<integer *>(nfold(expr->rhs))->eval());
-            case op_subtract:
+        case op_subtract:
             break;
-            case op_divide:
+        case op_divide:
             break;
-            case op_multiply:
+        case op_multiply:
             break;
-            case op_remainder:
+        case op_remainder:
             break;
         }
-        
-        
-        break;
 
-  }
-  
-  return e;
-}
-
-boolean_expression* bfold(boolean_expression* e)
-{
-    switch(e->kind)
-    {
-        case ek_bool:
-        break;
-        case ek_rel:
-        break;
-        case ek_logic:
         break;
     }
 
-  return e;
+    return e;
+}
+
+boolean_expression *bfold(boolean_expression *e)
+{
+    switch (e->kind)
+    {
+    case ek_bool:
+        break;
+    case ek_rel:
+        break;
+    case ek_logic:
+        break;
+    }
+
+    return e;
 }
