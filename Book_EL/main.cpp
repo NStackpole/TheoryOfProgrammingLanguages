@@ -116,5 +116,14 @@ int main()
         std::cout << " = " << if_test->eval() << "\n";
     }
 
+    //folding test ----------------------------------------------------------------------------------
+    {
+        program *test = new program(0, new arithmetic_expression(op_add, new integer(10), new integer(50)));
+
+        //Comes back with and prints an integer instead of an arithmetic expression.
+        print(pfold(test));
+        std::cout << "\n";
+    }
+
     return 0;
 }
