@@ -191,6 +191,7 @@ numeric_expression *nfold(numeric_expression *e)
     case ek_if:
         break;
     case ek_arith:
+    {
         arithmetic_expression *expr = static_cast<arithmetic_expression *>(e);
         switch (expr->op)
         {
@@ -208,6 +209,7 @@ numeric_expression *nfold(numeric_expression *e)
 
         break;
     }
+    }
 
     return e;
 }
@@ -217,11 +219,33 @@ boolean_expression *bfold(boolean_expression *e)
     switch (e->kind)
     {
     case ek_bool:
-        break;
+        return e;
     case ek_rel:
+    {
+        relational_expression *rel_expr = static_cast<relational_expression *>(e);
+        switch (rel_expr->op)
+        {
+        case op_less_than:
+            return new boolean(static_cast<integer *>(nfold(rel_expr->lhs))->eval() < static_cast<integer *>(nfold(rel_expr->rhs))->eval());
+        case op_greater_than:
+            return new boolean(static_cast<integer *>(nfold(rel_expr->lhs))->eval() > static_cast<integer *>(nfold(rel_expr->rhs))->eval());
+        case op_equal:
+            return new boolean(static_cast<integer *>(nfold(rel_expr->lhs))->eval() == static_cast<integer *>(nfold(rel_expr->rhs))->eval());
+        }
         break;
+    }
     case ek_logic:
+    {
+        logical_expression *logic_expr = static_cast<logical_expression *>(e);
+        switch (logic_expr->op)
+        {
+        case op_and:
+            return new boolean(static_cast<boolean *>(bfold(logic_expr->lhs))->eval() < static_cast<boolean *>(bfold(logic_expr->rhs))->eval());
+        case op_or:
+            return new boolean(static_cast<boolean *>(bfold(logic_expr->lhs))->eval() > static_cast<boolean *>(bfold(logic_expr->rhs))->eval());
+        }
         break;
+    }
     }
 
     return e;
