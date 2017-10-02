@@ -197,13 +197,13 @@ numeric_expression *nfold(numeric_expression *e)
         case op_add:
             return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() + static_cast<integer *>(nfold(expr->rhs))->eval());
         case op_subtract:
-            break;
+            return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() - static_cast<integer *>(nfold(expr->rhs))->eval());
         case op_divide:
-            break;
+            return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() / static_cast<integer *>(nfold(expr->rhs))->eval());
         case op_multiply:
-            break;
+            return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() * static_cast<integer *>(nfold(expr->rhs))->eval());
         case op_remainder:
-            break;
+            return new integer(static_cast<integer *>(nfold(expr->lhs))->eval() % static_cast<integer *>(nfold(expr->rhs))->eval());
         }
 
         break;
