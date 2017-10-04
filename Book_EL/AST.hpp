@@ -138,6 +138,8 @@ int height(boolean_expression *);
 //printing
 void print(numeric_expression *e);
 void print(boolean_expression *e);
+void print_type(numeric_expression *e);
+void print_type(boolean_expression *e);
 
 //folding
 numeric_expression *pfold(program *p);
