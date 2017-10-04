@@ -135,3 +135,38 @@ void print(boolean_expression *e)
         return print_logical(static_cast<logical_expression *>(e));
     }
 }
+
+void print_type(numeric_expression *e)
+{
+    switch (e->kind)
+    {
+    case ek_arith:
+        std::cout << "arithmetic expression";
+        break;
+    case ek_int:
+        std::cout << "integer literal";
+        break;
+    case ek_if:
+        std::cout << "if expression";
+        break;
+    case ek_arg:
+        std::cout << "argument expression";
+        break;
+    }
+}
+
+void print_type(boolean_expression *e)
+{
+    switch (e->kind)
+    {
+    case ek_bool:
+        std::cout << "boolean literal";
+        break;
+    case ek_rel:
+        std::cout << "relational expression";
+        break;
+    case ek_logic:
+        std::cout << "logic expression";
+        break;
+    }
+}
