@@ -173,6 +173,7 @@ int height(boolean_expression *e)
     }
 }
 
+//folding functions
 numeric_expression *pfold(program *p)
 {
     return nfold(p->body);
@@ -192,7 +193,7 @@ numeric_expression *nfold(numeric_expression *e)
     {
         if_expression *expr = static_cast<if_expression *>(e);
 
-        if(bfold(expr->test)->eval())
+        if (bfold(expr->test)->eval())
             return nfold(expr->pass);
         else
             return nfold(expr->fail);
@@ -258,4 +259,106 @@ boolean_expression *bfold(boolean_expression *e)
     }
 
     return e;
+}
+
+//syntactic equality functions
+bool neq(numeric_expression *e1, numeric_expression *e2)
+{
+    switch (e1->kind)
+    {
+    case ek_int:
+    {
+        if (e2->kind != ek_int)
+        {
+            return false;
+        }
+        else
+        {
+            return (e1->eval() == e2->eval());
+        }
+    }
+
+    case ek_arg:
+    {
+        if (e2->kind != ek_arg)
+        {
+            return false;
+        }
+    }
+
+    case ek_arith:
+    {
+        if (e2->kind != ek_arith)
+        {
+            return false;
+        }
+
+        arithmetic_expression *arith1 = static_cast<arithmetic_expression *>(e1);
+        arithmetic_expression *arith2 = static_cast<arithmetic_expression *>(e2);
+
+        if (neq(arith1->lhs, arith2->lhs))
+        {
+            return neq(arith1->rhs, arith2->rhs);
+        }
+    }
+
+    case ek_if:
+    {
+        if (e2->kind != ek_if)
+        {
+            return false;
+        }
+
+        if_expression *if_expr1 = static_cast<if_expression *>(e1);
+        if_expression *if_expr2 = static_cast<if_expression *>(e2);
+
+        if (beq(if_expr1->test, if_expr2->test) && neq(if_expr1->pass, if_expr2->pass))
+        {
+            return neq(if_expr1->fail, if_expr2->fail);
+        }
+    }
+    }
+
+    return false;
+}
+
+bool beq(boolean_expression *e1, boolean_expression *e2)
+{
+
+    switch (e1->kind)
+    {
+    case ek_bool:
+    {
+        if (e2->kind != ek_bool)
+            return false;
+        else
+            return e1->eval() == e2->eval();
+    }
+
+    case ek_logic:
+    {
+        if (e2->kind != ek_logic)
+            return false;
+
+        logical_expression *log_expr1 = static_cast<logical_expression *>(e1);
+        logical_expression *log_expr2 = static_cast<logical_expression *>(e2);
+
+        if (beq(log_expr1->rhs, log_expr2->rhs))
+            return beq(log_expr1->lhs, log_expr2->lhs);
+    }
+
+    case ek_rel:
+    {
+        if (e2->kind != ek_rel)
+            return false;
+
+        relational_expression *rel_expr1 = static_cast<relational_expression *>(e1);
+        relational_expression *rel_expr2 = static_cast<relational_expression *>(e2);
+
+        if (neq(rel_expr1->rhs, rel_expr2->rhs))
+            return neq(rel_expr1->lhs, rel_expr2->lhs);
+    }
+    }
+
+    return false;
 }

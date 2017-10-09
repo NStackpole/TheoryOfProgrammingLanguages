@@ -146,4 +146,8 @@ numeric_expression *pfold(program *p);
 numeric_expression *nfold(numeric_expression *e);
 boolean_expression *bfold(boolean_expression *e);
 
+//syntactic equality
+bool neq(numeric_expression *, numeric_expression *);
+bool beq(boolean_expression *, boolean_expression *);
+
 #endif
