@@ -276,6 +276,8 @@ bool neq(numeric_expression *e1, numeric_expression *e2)
         {
             return (e1->eval() == e2->eval());
         }
+
+        return false;
     }
 
     case ek_arg:
@@ -284,6 +286,8 @@ bool neq(numeric_expression *e1, numeric_expression *e2)
         {
             return false;
         }
+
+        return false;
     }
 
     case ek_arith:
@@ -296,10 +300,12 @@ bool neq(numeric_expression *e1, numeric_expression *e2)
         arithmetic_expression *arith1 = static_cast<arithmetic_expression *>(e1);
         arithmetic_expression *arith2 = static_cast<arithmetic_expression *>(e2);
 
-        if (neq(arith1->lhs, arith2->lhs))
+        if ((arith1->op == arith2->op) && neq(arith1->lhs, arith2->lhs))
         {
             return neq(arith1->rhs, arith2->rhs);
         }
+
+        return false;
     }
 
     case ek_if:
@@ -316,6 +322,8 @@ bool neq(numeric_expression *e1, numeric_expression *e2)
         {
             return neq(if_expr1->fail, if_expr2->fail);
         }
+
+        return false;
     }
     }
 
@@ -343,7 +351,7 @@ bool beq(boolean_expression *e1, boolean_expression *e2)
         logical_expression *log_expr1 = static_cast<logical_expression *>(e1);
         logical_expression *log_expr2 = static_cast<logical_expression *>(e2);
 
-        if (beq(log_expr1->rhs, log_expr2->rhs))
+        if ((log_expr1->op != log_expr2->op) && beq(log_expr1->rhs, log_expr2->rhs))
             return beq(log_expr1->lhs, log_expr2->lhs);
     }
 
@@ -355,7 +363,7 @@ bool beq(boolean_expression *e1, boolean_expression *e2)
         relational_expression *rel_expr1 = static_cast<relational_expression *>(e1);
         relational_expression *rel_expr2 = static_cast<relational_expression *>(e2);
 
-        if (neq(rel_expr1->rhs, rel_expr2->rhs))
+        if ((rel_expr1->op != rel_expr2->op) && neq(rel_expr1->rhs, rel_expr2->rhs))
             return neq(rel_expr1->lhs, rel_expr2->lhs);
     }
     }
