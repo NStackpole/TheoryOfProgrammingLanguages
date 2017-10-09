@@ -172,5 +172,18 @@ int main()
         std::cout << "\n";
     }
 
+    //syntactic equality tests
+    {
+        arithmetic_expression *test1 = new arithmetic_expression(op_add, new integer(10), new integer(20));
+        arithmetic_expression *test2 = new arithmetic_expression(op_add, new integer(10), new integer(20));
+        std::cout << neq(test1, test2) << "\n";
+    }
+
+    {
+        arithmetic_expression *test1 = new arithmetic_expression(op_subtract, new integer(10), new integer(20));
+        arithmetic_expression *test2 = new arithmetic_expression(op_add, new integer(10), new integer(20));
+        std::cout << neq(test1, test2) << "\n";
+    }
+
     return 0;
 }
