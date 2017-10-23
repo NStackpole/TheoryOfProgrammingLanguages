@@ -15,9 +15,15 @@ struct expr
 
 struct var
 {
-    var(std::string);
+    var(const std::string &);
 
     std::string id;
+};
+
+struct subst
+{
+    var *v;
+    expr *s;
 };
 
 //A reference to a bound variable
@@ -43,3 +49,9 @@ struct app_expr : expr
     expr *abs;
     expr *arg;
 };
+
+expr *substitute(expr *, const subst &s);
+
+expr *subst_var(var_expr *e, const subst &s);
+expr *subst_abs(abs_expr *e, const subst &s);
+expr *subst_app(app_expr *e, const subst &s);
