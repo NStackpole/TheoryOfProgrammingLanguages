@@ -1,5 +1,8 @@
 #include <string>
 
+#ifndef ast_hpp
+#define ast_hpp
+
 enum expr_kind
 {
     ek_var,
@@ -50,8 +53,4 @@ struct app_expr : expr
     expr *arg;
 };
 
-expr *substitute(expr *, const subst &s);
-
-expr *subst_var(var_expr *e, const subst &s);
-expr *subst_abs(abs_expr *e, const subst &s);
-expr *subst_app(app_expr *e, const subst &s);
+#endif
