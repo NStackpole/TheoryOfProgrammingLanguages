@@ -8,7 +8,7 @@ var::var(const std::string &str) : id(str)
 {
 }
 
-var_expr::var_expr(std::string str) : ref(str), expr(ek_var)
+var_expr::var_expr(var *v) : ref(v), expr(ek_var)
 {
 }
 

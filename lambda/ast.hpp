@@ -32,9 +32,9 @@ struct subst
 //A reference to a bound variable
 struct var_expr : expr
 {
-    var_expr(std::string);
+    var_expr(var *);
 
-    std::string ref;
+    var *ref;
 };
 
 struct abs_expr : expr

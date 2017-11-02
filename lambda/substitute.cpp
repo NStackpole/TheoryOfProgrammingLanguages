@@ -13,13 +13,13 @@ expr *substitute(expr *e, const subst &s)
     return new expr(ek_abs);
 }
 
-// expr *subst_var(var_expr *e, const subst &s)
-// {
-//     if (s.var == e->id)
-//         return s.rep;
-//     else
-//         return e;
-// }
+expr *subst_var(var_expr *e, const subst &s)
+{
+    if (s.v == e->ref)
+        return s.s;
+    else
+        return e;
+}
 
 // expr *subst_abs(abs_expr *e, const subst &s)
 // {
